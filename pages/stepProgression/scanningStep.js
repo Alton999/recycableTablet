@@ -8,27 +8,31 @@ class ScanningStep extends Component {
 		super(props);
 		this.state = {
 			decodedResults: []
-		};
+		}
+
+		// This binding is necessary to make `this` work in the callback.
 		this.onNewScanResult = this.onNewScanResult.bind(this);
 	}
+
 	render() {
 		return (
-			<>
-				<Scanner
-					fps={10}
-					qrbox={250}
-					aspectRatio={"16:10"}
-					disableFlip={false}
-					qrCodeSuccessCallback={this.onNewScanResult}
-				/>
-
-				<ResultContainerTable results={this.state.decodedResults} />
-			</>
+			<div className="w-3/6 h-24">
+					<Scanner
+						fps={10}
+						qrbox={250}
+						disableFlip={false}
+						qrCodeSuccessCallback={this.onNewScanResult}/>
+					<ResultContainerTable results={this.state.decodedResults} />
+			</div>
 		);
 	}
+
 	onNewScanResult(decodedText, decodedResult) {
-		// Handle the result here
-		console.log("App result: ", decodedResult);
+		console.log(
+			"App [result]", decodedResult);
+
+		// let decodedResults = this.state.decodedResults;
+		// decodedResults.push(decodedResult);
 		this.setState((state, props) => {
 			state.decodedResults.push(decodedResult);
 			return state;
