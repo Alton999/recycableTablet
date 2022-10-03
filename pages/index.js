@@ -1,7 +1,24 @@
+import React, { useState } from "react";
+
 import Head from "next/head";
 import Button from "../components/button";
 
-export default function Home() {
+// Importing of step components
+import Step1 from "./stepProgression/introductionStep";
+import Step2 from "./stepProgression/scanningStep";
+
+const Home = () => {
+	const [step, setStep] = useState(1);
+	const navForward = () => {
+		setStep(step + 1);
+		console.log(step);
+	};
+
+	const navBack = () => {
+		setStep(step - 1);
+		console.log(step);
+	};
+
 	return (
 		<div>
 			<Head>
@@ -14,27 +31,14 @@ export default function Home() {
 			</Head>
 
 			{/* This would be the first welcome page */}
-			<main className="container w-5/6 mx-auto">
+			<main className="h-90v">
 				{/* Should have conditional steps here depending on step number */}
+				{step === 1 && <Step1 navForward={navForward} navBack={navBack} />}
+				{step === 2 && <Step2 navForward={navForward} navBack={navBack} />}
 				{/* Step 1 */}
-				<section className="flex items-center h-90v">
-					{/* Left intro section */}
-					<section className="w-1/2">
-						<h1 className="text-5xl leading-loose">
-							Welcome to the
-							<div className="text-5xl">
-								recyc | <span className="font-bold">ABLE</span>
-							</div>
-							concept bin.
-						</h1>
-					</section>
-
-					{/* Right section */}
-					<section className="flex w-1/2 justify-center">
-						<Button text="Start Disposing" />
-					</section>
-				</section>
 			</main>
 		</div>
 	);
-}
+};
+
+export default Home;
