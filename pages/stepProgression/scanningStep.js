@@ -23,6 +23,7 @@ class ScanningStep extends Component {
 						disableFlip={false}
 						qrCodeSuccessCallback={this.onNewScanResult}/>
 					<ResultContainerTable results={this.state.decodedResults} />
+					<h1>Hello world</h1>
 			</div>
 		);
 	}
