@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Component } from "react";
 import Scanner from "../../components/scanner";
 import ResultContainerTable from "../../components/scanningResults";
+import styles from "../../styles/scanner.module.css"
 
 class ScanningStep extends Component {
 	// const [torchOn, setTorchOn] = useState(false);
@@ -16,14 +17,20 @@ class ScanningStep extends Component {
 
 	render() {
 		return (
-			<div className="w-3/6 h-24">
-					<Scanner
-						fps={10}
-						qrbox={250}
-						disableFlip={false}
-						qrCodeSuccessCallback={this.onNewScanResult}/>
-					<ResultContainerTable results={this.state.decodedResults} />
-			</div>
+			<>
+				<section className="flex flex-col justify-center content-center w-3/6 h-full mx-auto">
+					<div>
+						<div className={styles.scanner}>
+							<Scanner
+								fps={10}
+								qrbox={{width: 300, height: 150}}
+								disableFlip={false}
+								qrCodeSuccessCallback={this.onNewScanResult}/>
+						</div>
+					</div>
+				</section>
+				<ResultContainerTable className="mt-12" results={this.state.decodedResults} />
+			</>
 		);
 	}
 

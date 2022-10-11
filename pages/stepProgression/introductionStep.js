@@ -3,7 +3,7 @@ import Button from "../../components/button";
 
 const introductionStep = ({ navForward }) => {
 	return (
-		<section className="flex w-3/6 mx-auto items-center h-90v justify-between">
+		<section className="flex w-4/6 mx-auto items-center h-90v justify-between">
 			{/* Left intro section */}
 			<section className="w-1/2">
 				<h1 className="text-5xl leading-loose">

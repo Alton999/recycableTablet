@@ -31,12 +31,11 @@ const Home = () => {
 			</Head>
 
 			{/* This would be the first welcome page */}
-			<main className="h-90v">
+
 				{/* Should have conditional steps here depending on step number */}
 				{step === 1 && <Step1 navForward={navForward} navBack={navBack} />}
 				{step === 2 && <Step2 navForward={navForward} navBack={navBack} />}
 				{/* Step 1 */}
-			</main>
 		</div>
 	);
 };
