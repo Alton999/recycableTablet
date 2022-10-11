@@ -4,11 +4,15 @@ import ResultContainerTable from "../../components/scanningResults";
 import styles from "../../styles/scanner.module.css"
 
 class ScanningStep extends Component {
+	// const [isScanning, setIsScanning] = useState(false);
 	// const [torchOn, setTorchOn] = useState(false);
+
 	constructor(props) {
 		super(props);
 		this.state = {
-			decodedResults: []
+			isScanning: true,
+			isLoading: false,
+			decodedResult: null
 		}
 
 		// This binding is necessary to make `this` work in the callback.
@@ -21,15 +25,17 @@ class ScanningStep extends Component {
 				<section className="flex flex-col justify-center content-center w-3/6 h-full mx-auto">
 					<div>
 						<div className={styles.scanner}>
-							<Scanner
+							{this.state.isScanning ? <Scanner
 								fps={10}
-								qrbox={{width: 300, height: 150}}
+								qrbox={250}
 								disableFlip={false}
-								qrCodeSuccessCallback={this.onNewScanResult}/>
+								qrCodeSuccessCallback={this.onNewScanResult}/> : null}
+
 						</div>
 					</div>
 				</section>
-				<ResultContainerTable className="mt-12" results={this.state.decodedResults} />
+				{this.state.decodedResult}
+				<ResultContainerTable result={this.state.decodedResult} />
 			</>
 		);
 	}
@@ -37,13 +43,12 @@ class ScanningStep extends Component {
 	onNewScanResult(decodedText, decodedResult) {
 		console.log(
 			"App [result]", decodedResult);
-
-		// let decodedResults = this.state.decodedResults;
-		// decodedResults.push(decodedResult);
 		this.setState((state, props) => {
-			state.decodedResults.push(decodedResult);
+			state.decodedResult = decodedText;
+
 			return state;
 		});
+		this.setState((state, props) => state.isScanning = false);
 	}
 }
 
