@@ -34,7 +34,6 @@ class ScanningStep extends Component {
 						</div>
 					</div>
 				</section>
-				{this.state.decodedResult}
 				<ResultContainerTable result={this.state.decodedResult} />
 			</>
 		);
@@ -43,12 +42,12 @@ class ScanningStep extends Component {
 	onNewScanResult(decodedText, decodedResult) {
 		console.log(
 			"App [result]", decodedResult);
+		this.setState((state, props) => state.isScanning = false);
 		this.setState((state, props) => {
 			state.decodedResult = decodedText;
-
 			return state;
 		});
-		this.setState((state, props) => state.isScanning = false);
+
 	}
 }
 
