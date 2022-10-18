@@ -14,7 +14,6 @@ const introductionStep = ({ navForward }) => {
 					concept bin.
 				</h1>
 			</section>
-
 			{/* Right section */}
 			<section className="flex justify-end w-1/4">
 				<Button text="Start Disposing" func={navForward} />

@@ -1,44 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-// const  filterResult = (result) => {
-// 	let filteredResult = "";
-// 	// for (var i = 0; i < results.length; ++i) {
-// 	// 	if (i === 0) {
-// 	// 		filteredResults.push(results[i]);
-// 	// 		continue;
-// 	// 	}
-// 	//
-// 	// 	if (results[i].decodedText !== results[i - 1].decodedText) {
-// 	// 		filteredResults.push(results[i]);
-// 	// 	}
-// 	// }
-// 	// filteredResult += result.decodedText
-// 	console.log(result)
-// 	return filteredResult;
-//
-// }
+// import styles from "../styles/loader.modules.css";
+import styles from "../styles/loader.module.css";
 
 const ResultsCard = ({ result }) => {
-	// let filteredResults = filterResults(results);
-	// console.log(result);
-	// Convert the result from string to javascript object
-	// let resultObj = JSON.parse(result);
-	// console.log(resultObj);
 	console.log(result);
+
+	const [isLoading, setIsLoading] = useState(false);
+
+	useEffect(() => {
+		setIsLoading(true);
+		setTimeout(() => {
+			setIsLoading(false);
+		}, 4000);
+	}, []);
+
 	// Here I should read the results
 	return (
 		// This here would be the card component
 		<div className="w-5/6 h-90v flex items-center justify-center mx-auto">
-			<div className="Result-section flex flex-col items-center justify-center mx-auto border-4 border-amber-700 w-full h-96 text-center ">
+			<div className="Result-section flex flex-col items-center justify-center mx-auto border-4 border-amber-700 w-full text-center py-14">
 				<h1 className="text-3xl font-bold">Thank you for using</h1>
-				<div className="text-5xl">
+				<div className="text-4xl mt-4">
 					recyc | <span className="font-bold">ABLE</span>
 				</div>
-				<h1 className="mt-14 text-4xl">
-					<span className="font-bold">Item: </span>
-					{result.item}
-				</h1>
-				parse
+
+				{isLoading ? (
+					<>
+						<h1 className="mt-14 text-3xl">
+							<span className="font-bold">Item: </span>
+							{result.item}
+						</h1>
+						<div className="mt-10">
+							<div className={styles.ldsRipple}>
+								<div></div>
+								<div></div>
+							</div>
+							<h2>
+								Please dispose of the {result.material} bottle in the{" "}
+								{result.bin} bin.
+							</h2>
+						</div>
+					</>
+				) : (
+					// This container would be the post disposal message, should include a QR code
+					<div className="mt-14">
+						<h3 className="text-4xl font-bold text-amber-700">
+							Disposal Successful!
+						</h3>
+						<p className="text-xl mt-4">
+							Scan this QR code to save your progress
+						</p>
+					</div>
+				)}
 			</div>
 		</div>
 	);
