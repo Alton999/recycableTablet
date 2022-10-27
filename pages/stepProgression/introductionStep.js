@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../../components/button";
+import styles from "../../styles/loader.module.css";
 
 const introductionStep = ({ navForward }) => {
 	return (
@@ -18,7 +19,9 @@ const introductionStep = ({ navForward }) => {
 			<section className="flex justify-end w-1/4">
 				<Button text="Start Disposing" func={navForward} />
 			</section>
-		</section>
+
+
+    </section>
 	);
 };
 

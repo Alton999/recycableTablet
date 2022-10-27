@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-// import styles from "../styles/loader.modules.css";
+import QrGenerator from "./qrGenerator";
 import styles from "../styles/loader.module.css";
 
 const ResultsCard = ({ result }) => {
@@ -12,7 +12,7 @@ const ResultsCard = ({ result }) => {
 		setIsLoading(true);
 		setTimeout(() => {
 			setIsLoading(false);
-		}, 4000);
+		}, 5000);
 	}, []);
 
 	// Here I should read the results
@@ -32,13 +32,11 @@ const ResultsCard = ({ result }) => {
 							{result.item}
 						</h1>
 						<div className="mt-10">
-							<div className={styles.ldsRipple}>
-								<div></div>
-								<div></div>
+							<div className={styles.ldsDefault}>
+                <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
 							</div>
 							<h2>
-								Please dispose of the {result.material} bottle in the{" "}
-								{result.bin} bin.
+								Please dispose of the {result.material} bottle in the {result.bin} bin.
 							</h2>
 						</div>
 					</>
@@ -48,9 +46,11 @@ const ResultsCard = ({ result }) => {
 						<h3 className="text-4xl font-bold text-amber-700">
 							Disposal Successful!
 						</h3>
-						<p className="text-xl mt-4">
-							Scan this QR code to save your progress
+						<p className="text-xl my-4 px-4">
+							Scan this QR code to add the disposal of {result.item} to your disposal chart.
 						</p>
+						<QrGenerator result={result}/>
+
 					</div>
 				)}
 			</div>
