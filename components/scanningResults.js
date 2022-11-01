@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 
 import QrGenerator from "./qrGenerator";
+import Button from "./button";
 import styles from "../styles/loader.module.css";
 
 const ResultsCard = ({ result }) => {
 	console.log(result);
 
 	const [isLoading, setIsLoading] = useState(false);
+
+	const reloadPage = () => {
+		window.location.reload();
+	};
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -33,10 +38,22 @@ const ResultsCard = ({ result }) => {
 						</h1>
 						<div className="mt-10">
 							<div className={styles.ldsDefault}>
-                <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
 							</div>
 							<h2>
-								Please dispose of the {result.material} bottle in the {result.bin} bin.
+								Please dispose of the {result.material} bottle in the{" "}
+								{result.bin} bin.
 							</h2>
 						</div>
 					</>
@@ -47,10 +64,13 @@ const ResultsCard = ({ result }) => {
 							Disposal Successful!
 						</h3>
 						<p className="text-xl my-4 px-4">
-							Scan this QR code to add the disposal of {result.item} to your disposal chart.
+							Scan this QR code to add the disposal of {result.item} to your
+							disposal chart.
 						</p>
-						<QrGenerator result={result}/>
-
+						<QrGenerator result={result} />
+						<section className="mt-5">
+							<Button func={reloadPage} text="Restart" />
+						</section>
 					</div>
 				)}
 			</div>
