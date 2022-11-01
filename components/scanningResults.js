@@ -52,7 +52,7 @@ const ResultsCard = ({ result }) => {
 								<div></div>
 							</div>
 							<h2>
-								Please dispose of the {result.material} bottle in the{" "}
+								Please dispose of the {result.material} bottle in the
 								{result.bin} bin.
 							</h2>
 						</div>
