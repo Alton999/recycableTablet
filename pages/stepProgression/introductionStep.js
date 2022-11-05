@@ -19,9 +19,7 @@ const introductionStep = ({ navForward }) => {
 			<section className="flex justify-end w-1/4">
 				<Button text="Start Disposing" func={navForward} />
 			</section>
-
-
-    </section>
+		</section>
 	);
 };
 
