@@ -44,11 +44,7 @@ class ScanningStep extends Component {
 					if (!document.getElementById("qr-reader")) return;
 					const html5QrCode = new Html5Qrcode("qr-reader");
 					this.state.scanner = html5QrCode;
-					html5QrCode.start(
-						{ facingMode: "environment" },
-						config,
-						onScanSuccess
-					);
+					html5QrCode.start({ facingMode: "user" }, config, onScanSuccess);
 				}
 			})
 			.catch((err) => {
