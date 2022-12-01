@@ -18,8 +18,7 @@ class ScanningStep extends Component {
 
 	componentDidMount() {
 		const onScanSuccess = (decodedText, decodedResult) => {
-			// this.setState((state) => (state.decodedResult = JSON.parse(decodedText)));
-			console.log(decodedText);
+			// console.log(decodedText);
 
 			// Need to properly use set state not manipulate the state
 			this.setState({
@@ -27,10 +26,9 @@ class ScanningStep extends Component {
 				showScanner: false,
 				showResults: true
 			});
-
+			// console.log("Scanner should be stopped")
 			stopScanner();
 
-			// this.$emit('result:', decodedText, decodedResult)
 		};
 
 		const config = {
@@ -43,8 +41,13 @@ class ScanningStep extends Component {
 				if (devices && devices.length) {
 					if (!document.getElementById("qr-reader")) return;
 					const html5QrCode = new Html5Qrcode("qr-reader");
-					this.state.scanner = html5QrCode;
-					html5QrCode.start({ facingMode: "user" }, config, onScanSuccess);
+					this.setState({ scanner: html5QrCode });
+					// this.state.scanner = html5QrCode;
+					html5QrCode.start(
+						{ facingMode: "user" },
+						config,
+						onScanSuccess
+					);
 				}
 			})
 			.catch((err) => {
@@ -53,6 +56,7 @@ class ScanningStep extends Component {
 			});
 
 		const stopScanner = () => {
+			// console.log("Stop function worked")
 			this.state.scanner
 				.stop()
 				.then((ignore) => {
@@ -76,6 +80,8 @@ class ScanningStep extends Component {
 									<div id="qr-reader" className={styles.scanner} />
 								</div>
 							) : (
+								// <div></div>
+								// <div>{this.state.decodedResult.item}</div>
 								<ResultContainerTable result={this.state.decodedResult} />
 							)}
 						</div>

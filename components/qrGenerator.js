@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 
 const QrGenerator = ({ result }) => {
-	console.log(result);
+	// console.log(result);
 	const qrcode = (
 		<QRCodeCanvas
 			id="qrCode"
