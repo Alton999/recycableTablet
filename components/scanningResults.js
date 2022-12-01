@@ -5,9 +5,9 @@ import Button from "./button";
 import styles from "../styles/loader.module.css";
 
 const ResultsCard = ({ result }) => {
-	console.log(result);
+	// console.log(result);
 
-	const [animationType, setAnimationType] = useState(null);
+	// const [animationType, setAnimationType] = useState(null);
 
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -15,9 +15,20 @@ const ResultsCard = ({ result }) => {
 		window.location.reload();
 	};
 
+	const generateColour = (binType) => {
+		if(binType === "Recycling") {
+			return "Orange";
+		} else if (binType === "Paper") {
+			return "Blue"
+		} else {
+			return "Red"
+		}
+	}
+
+
 	const generateLoading = (binType) => {
-		console.log(binType);
 		if (binType === "Recycling") {
+			// setColourBin("Orange")
 			return (
 				<figure className={styles.loaderContainer}>
 					<div className={styles.recycling}></div>
@@ -25,6 +36,7 @@ const ResultsCard = ({ result }) => {
 				</figure>
 			);
 		} else if (binType === "Paper") {
+			// setColourBin("Blue")
 			return (
 				<figure className={styles.loaderContainer}>
 					<div className={styles.paper}></div>
@@ -32,6 +44,7 @@ const ResultsCard = ({ result }) => {
 				</figure>
 			);
 		} else {
+			// setColourBin("Red")
 			return (
 				<figure className={styles.loaderContainer}>
 					<div className={styles.general}></div>
@@ -42,10 +55,10 @@ const ResultsCard = ({ result }) => {
 	};
 
 	useEffect(() => {
-		setIsLoading(true);
+		// setIsLoading(true);
 
-		setAnimationType(result.bin);
-		console.log(animationType);
+		// setAnimationType(result.bin);
+		// console.log(animationType);
 
 		setTimeout(() => {
 			setIsLoading(false);
@@ -68,14 +81,13 @@ const ResultsCard = ({ result }) => {
 							<span className="font-bold">Item: </span>
 							{result.item}
 						</h1>
-						<div className="">
+						<div>
 							<div className="flex justify-center mt-14">
 								{generateLoading(result.bin)}
 							</div>
 
 							<h2 className="text-2xl font-bold mt-10">
-								Please dispose of the {result.material} bottle in the{" "}
-								{result.bin} bin.
+								Please place the item in the <span className="font-bold">{generateColour(result.bin)}</span> lit up bin.
 							</h2>
 						</div>
 					</>
@@ -86,8 +98,7 @@ const ResultsCard = ({ result }) => {
 							Disposal Successful!
 						</h3>
 						<p className="text-xl my-4 px-4">
-							Scan this QR code to add the disposal of {result.item} to your
-							disposal chart.
+							Please use the QR code provided in the instructions to access the mobile application and scan this QR code!
 						</p>
 						<QrGenerator result={result} />
 						<section className="mt-5">

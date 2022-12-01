@@ -4,7 +4,7 @@
 	border-radius: 50%;
 	transform: rotate(0deg);
 	transition: transform 0.7s linear;
-	animation: rotate 3.5s ease infinite;
+	animation: rotate 2s ease infinite;
 }
 
 .loaderContainer > div {
@@ -20,11 +20,11 @@
 }
 
 .recycling {
-	background: #f1c40f;
+	background: #d35400;
 }
 
 .paper {
-	background: #27ae60;
+	background: #2980b9;
 }
 
 .general {
